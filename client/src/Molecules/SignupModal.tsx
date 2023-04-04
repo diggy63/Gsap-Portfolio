@@ -5,13 +5,15 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import authServices from "../Api/AuthServices.js";
+import tokenServices from "../Util/TokenServices.js";
 
 interface SignupModal {
     open:boolean,
     handleClose: () => void;
+    getUser:() => void;
 }
 
-export default function SignupModal({open,handleClose}:SignupModal){
+export default function SignupModal({getUser,open,handleClose}:SignupModal){
     const [userInfo, setUserInfo] = useState({
         email:"",
         password:"",
@@ -39,7 +41,9 @@ export default function SignupModal({open,handleClose}:SignupModal){
 
     async function handleSignup(){
         const ans = await authServices.signup(userInfo)
-        console.log(ans)
+        await tokenServices.setToken(ans.token)
+        handleClose()
+        getUser()
     }
     return(
         <>

@@ -16,6 +16,8 @@ const port = process.env.PORT || 5000;
 
 app.use(require("./jwtAuth/auth"));
 
+
+
 app.use("/auth", require("./routes/api/user"));
 app.use("/test", require("./routes/api/test"));
 

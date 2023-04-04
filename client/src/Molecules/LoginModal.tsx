@@ -5,14 +5,16 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import authServices from "../Api/AuthServices.js";
+import tokenServices from "../Util/TokenServices.js";
 
 type loginModal = {
   open: boolean;
   handleClose: () => void;
   handleSignupModal: () => void;
+  getUser: () => void;
 };
 
-export default function LoginModal({ open, handleSignupModal, handleClose}: loginModal) {
+export default function LoginModal({getUser, open, handleSignupModal, handleClose}: loginModal) {
   const [userInfo, setUserInfo] = React.useState({
     email: "",
     password: "",
@@ -32,7 +34,9 @@ export default function LoginModal({ open, handleSignupModal, handleClose}: logi
 
   async function handleLogin() {
     const ans  = await authServices.login(userInfo);
-    console.log(ans)
+    tokenServices.setToken(ans.token)
+    handleClose()
+    getUser()
   }
 
   function handleChange(e: React.ChangeEvent<any>) {

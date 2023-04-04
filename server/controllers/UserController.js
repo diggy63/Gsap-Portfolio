@@ -6,6 +6,7 @@ const SECRET = process.env.SECRET;
 module.exports ={
     signup,
     login,
+    getUserInfo,
 }
 
 async function signup(req,res){
@@ -39,6 +40,11 @@ async function login(req, res){
     } catch (err) {
       return res.status(401).json(err);
     }
+}
+
+function getUserInfo(req,res){
+  user = {username:req.user.username,email:req.user.email}
+  return res.status(200).json(user)
 }
 
 
