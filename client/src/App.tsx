@@ -5,6 +5,7 @@ import Header from "./Organisms/Header";
 import Home from "./Pages/Home";
 import userServices from "./Api/UserService";
 import tokenServices from "./Util/TokenServices";
+import FindByMuscleGrups from "./Pages/FindByMuscleGroups";
 
 //material UI Import
 import "@fontsource/roboto/300.css";
@@ -38,6 +39,7 @@ function App() {
       <div className="header-spacer"></div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/groups" element={<FindByMuscleGrups />} />
       </Routes>
     </>
   );
