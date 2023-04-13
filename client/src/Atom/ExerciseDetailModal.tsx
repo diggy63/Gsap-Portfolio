@@ -54,7 +54,7 @@ export type detailResultItem = {
         videos: [],
         comments: [],
         variations: [],
-        author_history: []
+
 }
 
 
@@ -68,7 +68,7 @@ type modalProps={
 }
 
 export default function ExerciseDetailModal({detail, handleClose}:modalProps){
-    console.log(detail.details.images)
+    console.log(detail.details)
     return(
         <Modal
         open={detail.open}
